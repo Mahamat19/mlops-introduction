@@ -4,6 +4,8 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.linear_model import LogisticRegression
+import numpy as np
 
 def main():
     # Load dataset
@@ -28,6 +30,13 @@ def main():
     acc = accuracy_score(y_test, y_pred)
 
     print(f"\nModel accuracy: {acc:.2f}")
+
+    # --- Logistic Regression model ---
+    logreg_clf = LogisticRegression(max_iter=200, random_state=42)
+    logreg_clf.fit(X_train, y_train)
+    logreg_pred = logreg_clf.predict(X_test)
+    logreg_acc = accuracy_score(y_test, logreg_pred)
+    print(f"Logistic Regression accuracy: {logreg_acc:.2f}")
 
 if __name__ == "__main__":
     main()
